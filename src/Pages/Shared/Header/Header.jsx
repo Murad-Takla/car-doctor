@@ -1,12 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/icons/logo.svg'
+import { AuthContext } from '../../../Context/MyContext';
 
 const Header = () => {
+    const { user, LogOut } = useContext(AuthContext)
+
+    const logoutHandler = () => {
+        LogOut()
+    }
+    const scrollToServices = () => {
+        const servicesSection = document.getElementById('services-section');
+        if (servicesSection) {
+            servicesSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
     const menuItems = <>
         <li className='style-none'><Link to={'/'}>Home</Link> </li>
-        <li className='style-none'><Link to={'/login'}>LogIn</Link> </li>
         <li className='style-none'><Link to={'/register'}>Register</Link> </li>
+        <li className='style-none'><a onClick={scrollToServices}>Service</a></li>
+        {
+            user?.email ? <>
+                <li className='style-none'><Link onClick={logoutHandler}>Log Out</Link> </li>
+
+            </> : <>
+                <li className='style-none'><Link to={'/login'}>Log in</Link> </li>
+
+            </>
+        }
+        <li className='style-none'><Link to={'/order'}>Order</Link> </li>
     </>
     return (
         <div className="navbar bg-base-100 container mx-auto">
@@ -39,11 +62,11 @@ const Header = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     {menuItems}
-                   
+
                 </ul>
             </div>
             <div className="navbar-end">
-            <button className="btn btn-outline btn-warning">Appointment</button>
+                <button className="btn btn-outline btn-warning">Appointment</button>
             </div>
         </div>
     );

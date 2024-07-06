@@ -1,28 +1,31 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
-    const { img, title, price } = service
-    // console.log(service)
-    return (
+    const { _id, img, title, price } = service;
 
+    return (
         <div
-            className=" mt-4 container mx-auto p-6 w-[450px] border rounded-2xl  hover:shadow-md flex flex-col  mb-4"
+            className="lg:w-[350px] h-[500px] mt-10 mx-auto border rounded-2xl hover:shadow-md flex flex-col mb-4"
         >
-            <img
-                src={img}
-                className="shadow rounded-lg overflow-hidden border w-[490px] h-[290px] "
-            />
-            <div className="mt-8 ">
-                <h4 className="font-bold text-xl">{title}</h4>
-                <p className="mt-2 text-gray-600">
-                    Price : ${price} 
-                </p>
-                <div className="mt-5">
-                <button className="btn btn-outline btn-secondary">Booking</button>
+            <div className='p-4 flex flex-col h-full'>
+                <img
+                    src={img}
+                    className="shadow rounded-lg overflow-hidden border w-full h-[290px]"
+                />
+                <div className="mt-2 flex-grow">
+                    <h4 className="font-bold text-xl">{title}</h4>
+                    <p className="mt-2 text-gray-400 font-semibold">
+                        Price : {price} BDT
+                    </p>
+                </div>
+                <div className="mt-auto mb-2 flex justify-center">
+                    <Link to={`/service/${_id}`}>
+                        <button className="btn btn-outline btn-secondary ">Booking</button>
+                    </Link>
                 </div>
             </div>
         </div>
-
     );
 };
 

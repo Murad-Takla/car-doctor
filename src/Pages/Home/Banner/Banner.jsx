@@ -48,7 +48,7 @@ const Banner = () => {
 
 
     return (
-        <div className="carousel  rounded-md mt-10 w-full ">
+        <div className="carousel   mt-10 w-full ">
             {
                 sliderData.map(slide => <Slider
                     key={slide.id}
