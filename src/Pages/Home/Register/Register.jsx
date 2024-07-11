@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import registerImg from '../../../assets/images/login/login.svg'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/MyContext';
 
 const Register = () => {
     const { createUser } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation() 
+    const From = location?.state?.from?.pathname || '/'
     const registerFormHandler = (event) => {
         event.preventDefault();
 
@@ -17,8 +20,30 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user
-                console.log(user)
+
+                const tokenUser ={
+                    email : user.email
+                }
+                
+                
+                // get jwt token 
+                
+                fetch('https://genius-car-server-theta-eight.vercel.app/jwt' , {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(tokenUser)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    localStorage.setItem('genius-car' , data.token)
+                })
+                 navigate(From , {replace:true})
+
                 form.reset()
+
+
             })
             .catch( err =>  console.error(err))
            

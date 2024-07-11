@@ -20,6 +20,7 @@ const MyContext = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
     const LogOut = () => {
+        localStorage.removeItem('genius-car')
         signOut(auth)
     }
 

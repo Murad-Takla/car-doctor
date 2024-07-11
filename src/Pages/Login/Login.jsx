@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import logImg from '../../assets/images/login/login.svg'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { json, Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/MyContext';
 import toast from 'react-hot-toast';
 
@@ -25,7 +25,25 @@ const Login = () => {
                 // console.log(user)
                 form.reset()
                 toast.success(`Successfully logged in !`)
-                navigate(From, { replace: true })
+                // get jwt token
+
+                const tokenUser = {
+                    email: user.email
+                }
+                fetch('https://genius-car-server-theta-eight.vercel.app/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(tokenUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                    
+                        // local storage is the easiest but not the best place to store the JWT token
+                        localStorage.setItem('genius-car' , data.token)
+                        navigate(From, { replace: true })
+                    })
 
             })
             .catch((err) => {

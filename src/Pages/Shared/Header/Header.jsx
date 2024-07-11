@@ -17,23 +17,23 @@ const Header = () => {
     }
 
     const menuItems = <>
-        <li className='style-none'><Link to={'/'}>Home</Link> </li>
-        <li className='style-none'><Link to={'/register'}>Register</Link> </li>
-        <li className='style-none'><a onClick={scrollToServices}>Service</a></li>
+        <li className='style-none font-semibold '><Link to={'/'}>Home</Link> </li>
+        <li className='style-none font-semibold '><Link to={'/register'}>Register</Link> </li>
+        <li className='style-none font-semibold '><a onClick={scrollToServices}>Services</a></li>
         {
             user?.email ? <>
-                <li className='style-none'><Link onClick={logoutHandler}>Log Out</Link> </li>
+                <li className='style-none font-semibold '><Link onClick={logoutHandler}>Log Out</Link> </li>
 
             </> : <>
-                <li className='style-none'><Link to={'/login'}>Log in</Link> </li>
+                <li className='style-none font-semibold '><Link to={'/login'}>Log in</Link> </li>
 
             </>
         }
-        <li className='style-none'><Link to={'/order'}>Order</Link> </li>
+        <li className='style-none font-semibold '><Link to={'/order'}>Orders</Link> </li>
     </>
     return (
-        <div className="navbar bg-base-100 container mx-auto">
-            <div className="navbar-start">
+        <div className="navbar bg-base-100 container mx-auto ">
+            <div className="navbar-start ">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg

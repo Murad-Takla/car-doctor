@@ -69,7 +69,10 @@ const OrderItems = ({ order, fetchOrders }) => {
                     <div className="flex items-center gap-3">
                         <div className="avatar">
                             <div className="w-24 rounded">
-                                <img src={orderInfo.img} alt="IMG" />
+                                {
+                                    orderInfo.img ? <><img src={orderInfo.img} alt="IMG" /> </> : <div className='w-full h-full  flex justify-center'> <span className="loading loading-ring loading-lg"></span> </div>
+                                }
+                                
                             </div>
                         </div>
                         <div>

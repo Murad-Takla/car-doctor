@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Context/MyContext';
 import { toast } from "react-hot-toast";
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ service }) => {
   
-    
+    const  navigate = useNavigate()
     const { user } = useContext(AuthContext)
   
     const { title, _id } = service
@@ -38,9 +39,11 @@ const CheckoutForm = ({ service }) => {
         })
             .then(res => res.json())
             .then(data => {
-               console.log(data)
+            //    console.log(data)
                 toast.success('order is confirmed');
+
                 form.reset()
+                navigate('/order')
             })
 
 

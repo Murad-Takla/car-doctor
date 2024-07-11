@@ -8,7 +8,7 @@ const PrivateRouter = ({ children }) => {
     // console.log(location)   // This provides the current location object, which can be used to determine where the user was trying to go before being redirected to the login page.
 
     if (loader) {
-        return <span className="loading loading-bars loading-lg"></span>
+        return <div className='flex justify-center my-5'><span className="loading loading-bars loading-lg t"></span></div>
     }
 
     if (!user) {
